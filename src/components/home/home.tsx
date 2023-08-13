@@ -1,5 +1,8 @@
 import type { Component } from "solid-js";
 
+import logo from "../../assets/delang.png";
+import macbook from "../../assets/macbook.svg";
+
 const Home: Component = () => {
   return (
     <div class="h-full">
@@ -9,8 +12,7 @@ const Home: Component = () => {
             class="flex items-center text-sky-300 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
             href="#"
           >
-            <img src="/src/assets/imgs/delang.png" height={35} width={35} />{" "}
-            &nbsp; DE
+            <img src={logo} height={35} width={35} /> &nbsp; DE
             <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-pink-400 to-purple-400">
               Lang
             </span>
@@ -52,7 +54,7 @@ const Home: Component = () => {
             </span>{" "}
             Land! 🚀
           </h1>
-          <p class="leading-normal text-sky-300 text-lg md:text-2xl mb-8 text-center md:text-left">
+          <p class="leading-normal text-sky-300 text- md:text-2xl mb-8 text-center md:text-left">
             Unleash innovation in code with DE - where simplicity meets
             versatility.
           </p>
@@ -60,7 +62,7 @@ const Home: Component = () => {
         <div class="w-full xl:w-3/5 md:flex md:justify-center p-12 overflow-hidden">
           <img
             class="w-full xl:w-4/5 lg:2-3/5 md:w-2/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6"
-            src="/src/assets/imgs/macbook.svg"
+            src={macbook}
           />
         </div>
         <div class="w-full text-gray-400 pb-4 text-sm text-center md:text-left fade-in">
