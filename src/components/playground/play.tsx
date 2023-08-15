@@ -1,28 +1,26 @@
 import type { Component } from "solid-js";
 
-import styles from "./play.module.css";
-import { FaSolidArrowLeftLong } from "solid-icons/fa";
-import { A } from "@solidjs/router";
-
 const Playground: Component = () => {
   return (
-    <div class="flex justify-center flex-col items-center">
-      <h1 class="text-4xl text-white">Playground</h1>
-      <p class="text-3xl text-sky-500 mt-8">Coming soon... 🚧</p>
-      <A
-        href="/"
-        class="relative inline-flex items-center justify-center p-4 px-10 py-3 mt-10 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
-      >
-        <span class="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 bg-purple-500 rounded-full blur-md ease"></span>
-        <span class="absolute inset-0 w-full h-full transition duration-700 group-hover:rotate-180 ease">
-          <span class="absolute bottom-0 left-0 w-24 h-24 -ml-10 bg-sky-500 rounded-full blur-md"></span>
-          <span class="absolute bottom-0 right-0 w-24 h-24 -mr-10 bg-pink-500 rounded-full blur-md"></span>
-        </span>
-        <span class="relative text-white flex items-center justify-center">
-          <FaSolidArrowLeftLong class="mr-2" size={20} fill="#fff" />
-          Back To Home &nbsp;
-        </span>
-      </A>
+    <div class="flex h-full">
+      <div class="w-10/12 h-full bg-gray-800 p-6 overflow-y-auto text-white rounded-tl-3xl rounded-bl-3xl">
+        <h2 class="text-xl font-semibold mb-4">Documentation</h2>
+        <p class="text-gray-300">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+        </p>
+      </div>
+      <div class="w-3/4 flex flex-col">
+        <div class="h-2/3 bg-gray-700 p-6 rounded-tr-3xl">
+          <h2 class="text-xl font-semibold mb-4 text-white">Code Editor</h2>
+          <textarea class="w-full h-80 bg-gray-600 text-white border border-gray-500 rounded p-3 resize-none focus:outline-none"></textarea>
+        </div>
+        <div class="h-1/3 bg-gray-600 p-6 overflow-y-auto rounded-br-3xl">
+          <h2 class="text-xl font-semibold mb-4 text-white">Output</h2>
+          <pre class="bg-gray-500 p-3 text-white">
+            Output will appear here...
+          </pre>
+        </div>
+      </div>
     </div>
   );
 };
