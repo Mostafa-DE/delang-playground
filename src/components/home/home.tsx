@@ -5,13 +5,13 @@ import Showcase from "../showcase";
 
 const Home: Component = () => {
   return (
-    <div>
+    <>
       <div class="h-full">
         <Header />
         <Showcase />
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

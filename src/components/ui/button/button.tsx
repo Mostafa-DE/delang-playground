@@ -7,6 +7,7 @@ type Props = {
   link: string;
   icon?: JSX.Element;
   iconPosition?: "left" | "right";
+  style?: { [key: string]: string | number };
 };
 
 const Button: Component<Props> = ({
@@ -14,10 +15,12 @@ const Button: Component<Props> = ({
   link,
   icon,
   iconPosition = "right",
+  style,
 }) => {
   return (
     <A
       href={link}
+      style={style}
       class="relative inline-flex items-center justify-center p-4 px-10 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
     >
       <span class="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 bg-purple-500 rounded-full blur-md ease"></span>
