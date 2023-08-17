@@ -1,13 +1,16 @@
 import type { JSX } from "solid-js";
 import { A } from "@solidjs/router";
 import { Component } from "../../../types";
+import LoadingSpinner from "./loadingSpinner";
 
 type Props = {
   text: string;
-  link: string;
+  link?: string;
   icon?: JSX.Element;
   iconPosition?: "left" | "right";
   style?: { [key: string]: string | number };
+  loading?: () => boolean;
+  handleClick?: () => void;
 };
 
 const Button: Component<Props> = ({
@@ -16,11 +19,14 @@ const Button: Component<Props> = ({
   icon,
   iconPosition = "right",
   style,
+  loading,
+  handleClick,
 }) => {
   return (
     <A
-      href={link}
+      href={link || "#"}
       style={style}
+      onClick={() => handleClick && loading && !loading() && handleClick()}
       class="relative inline-flex items-center justify-center p-4 px-10 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
     >
       <span class="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 bg-purple-500 rounded-full blur-md ease"></span>
@@ -30,7 +36,8 @@ const Button: Component<Props> = ({
       </span>
       <span class="relative text-white flex items-center justify-center">
         {iconPosition === "left" && icon ? icon : null}
-        {text} &nbsp;
+        {loading && loading() ? <LoadingSpinner /> : text}
+        &nbsp;
         {iconPosition === "right" && icon ? icon : null}
       </span>
     </A>
