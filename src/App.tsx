@@ -1,4 +1,5 @@
 import type { Component } from "solid-js";
+import NotFoundPage from "./components/404";
 
 import Home from "./components/home";
 import Playground from "./components/playground";
@@ -12,6 +13,7 @@ const App: Component = () => {
         <Routes>
           <Route path="/" component={Home} />
           <Route path="/play" component={Playground} />
+          <Route path="/*" component={NotFoundPage} />
         </Routes>
       </Router>
     </div>

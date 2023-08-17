@@ -53,6 +53,26 @@ const Playground: Component = () => {
     }
   };
 
+  function handleKeyDown(event: KeyboardEvent) {
+    if (event.key === "Tab" && textareaRef.value) {
+      event.preventDefault();
+
+      const { selectionStart, selectionEnd } = textareaRef;
+
+      // Insert a tab character at the current cursor position
+      const updatedCode =
+        code().substring(0, selectionStart) +
+        "\t" +
+        code().substring(selectionEnd);
+
+      setCode(updatedCode);
+
+      // Set the new selection position
+      const newSelectionPosition = selectionStart + 1;
+      textareaRef.setSelectionRange(newSelectionPosition, newSelectionPosition);
+    }
+  }
+
   return (
     <>
       <Button
@@ -106,6 +126,7 @@ const Playground: Component = () => {
                 class="w-full h-full resize-none focus:outline-none bg-transparent text-white pl-8"
                 rows={rows()}
                 value={code()}
+                onKeyDown={handleKeyDown}
                 onInput={(event) => {
                   setCode(event.currentTarget.value);
                   handleCodeLineNumbers(textareaRef, setRows);

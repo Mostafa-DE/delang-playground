@@ -36,6 +36,7 @@ const Button: Component<Props> = ({
       </span>
       <span class="relative text-white flex items-center justify-center">
         {iconPosition === "left" && icon ? icon : null}
+        &nbsp;
         {loading && loading() ? <LoadingSpinner /> : text}
         &nbsp;
         {iconPosition === "right" && icon ? icon : null}
