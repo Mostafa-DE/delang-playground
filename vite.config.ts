@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
-import pluginRewriteAll from "vite-plugin-rewrite-all";
 // import devtools from 'solid-devtools/vite';
 
 export default defineConfig({
@@ -11,7 +10,6 @@ export default defineConfig({
     */
     // devtools(),
     solidPlugin(),
-    pluginRewriteAll(),
   ],
   server: {
     port: 3000,
