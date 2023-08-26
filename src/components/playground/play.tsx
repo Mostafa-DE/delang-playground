@@ -79,7 +79,7 @@ const Playground: Component = () => {
         icon={<VsArrowLeft />}
         text=""
         link="/"
-        style={{ padding: "0 0.3rem" }}
+        style={{ padding: "0 0.4rem 0 0" }}
       />
       <div class="flex justify-center">
         <Button
@@ -91,7 +91,7 @@ const Playground: Component = () => {
         />
       </div>
       <div class="flex h-full">
-        <div class="w-10/12 flex flex-col justify-between h-full bg-gray-800 p-6 text-white rounded-tl-3xl rounded-bl-3xl">
+        <div class="w-8/12 flex flex-col justify-between h-full bg-gray-800 p-6 text-white rounded-tl-3xl rounded-bl-3xl">
           <div class="overflow-y-auto">
             <h2 class="text-xl font-semibold mb-4">Documentation</h2>
             <Docs />
@@ -101,19 +101,19 @@ const Playground: Component = () => {
               <Button
                 icon={<RiArrowsArrowLeftDoubleFill size={22} />}
                 text=""
-                style={{ padding: "0 0.3rem", margin: "0 0.5rem 0 0" }}
+                style={{ padding: "0 0.4rem 0 0", margin: "0 0.5rem 0 0" }}
               />
               1 of 1
               <Button
                 icon={<RiArrowsArrowRightDoubleFill size={22} />}
                 text=""
-                style={{ padding: "0 0.3rem", margin: "0 0 0 0.5rem" }}
+                style={{ padding: "0 0.4rem 0 0", margin: "0 0 0 0.5rem" }}
               />
             </div>
           </div>
         </div>
         <div class="w-3/4 flex flex-col">
-          <div class="h-2/3 bg-gray-700 p-6 rounded-tr-3xl overflow-auto">
+          <div class="h-full bg-gray-700 p-6 rounded-tr-3xl overflow-auto">
             <h2 class="text-xl bg-transparent focus:outline-none font-semibold mb-4 text-white">
               Code Editor
             </h2>
@@ -123,7 +123,7 @@ const Playground: Component = () => {
               </div>
               <textarea
                 ref={textareaRef}
-                class="w-full h-full resize-none focus:outline-none bg-transparent text-white pl-8"
+                class="w-full h-full resize-none focus:outline-none bg-transparent text-white pl-4"
                 rows={rows()}
                 value={code()}
                 onKeyDown={handleKeyDown}
@@ -131,6 +131,10 @@ const Playground: Component = () => {
                   setCode(event.currentTarget.value);
                   handleCodeLineNumbers(textareaRef, setRows);
                 }}
+                data-gramm="false"
+                data-gramm_editor="false"
+                data-enable-grammarly="false"
+                spellcheck={false}
               ></textarea>
             </div>
           </div>
