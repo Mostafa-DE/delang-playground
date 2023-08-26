@@ -18,7 +18,14 @@ const testCode = `let logName = fun() {
   return "DE Lang is Awesome! 🚀";
 }
 
-logName();
+let num1 = 15;
+let num2 = 10;
+
+if num1 > num2: {
+  logName();
+} else {
+  return "Nothing to show :(";
+}
 `;
 
 const habdleShowTestCode = (view: EditorView) => {
