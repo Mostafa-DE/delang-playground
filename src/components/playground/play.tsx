@@ -1,6 +1,6 @@
 import type { Component } from "solid-js";
-import { createSignal, createEffect, onMount } from "solid-js";
-import { handleCodeLineNumbers } from "./helpers";
+import type { EditorView } from "@codemirror/view";
+import { createSignal } from "solid-js";
 import Button from "../ui/button";
 import { VsArrowLeft, VsRunAll } from "solid-icons/vs";
 import {
@@ -8,26 +8,42 @@ import {
   RiArrowsArrowLeftDoubleFill,
 } from "solid-icons/ri";
 import Docs from "../../docs";
+import { CodeMirror } from "@solid-codemirror/codemirror";
+import { oneDark } from "@codemirror/theme-one-dark";
+import { basicSetup } from "codemirror";
+import { javascript } from "@codemirror/lang-javascript";
+import { handleKeyDown } from "../playground/helpers";
+
+const testCode = `let logName = fun() {
+  return "DE Lang is Awesome! 🚀";
+}
+
+logName();
+`;
+
+const habdleShowTestCode = (view: EditorView) => {
+  const { from, to } = view.state.selection.main;
+  view.dispatch({
+    changes: {
+      from,
+      to,
+      insert: testCode,
+    },
+  });
+
+  // move cursor to the end
+  view.dispatch({
+    selection: {
+      anchor: view.state.doc.length,
+      head: view.state.doc.length,
+    },
+  });
+};
 
 const Playground: Component = () => {
-  const [code, setCode] = createSignal("");
-  const [rows, setRows] = createSignal(14);
+  const [code, setCode] = createSignal(testCode);
   const [output, setOutput] = createSignal("");
   const [loading, setLoading] = createSignal(false);
-  let textareaRef: HTMLTextAreaElement = {} as HTMLTextAreaElement;
-
-  createEffect(() => {
-    onMount(() => {
-      textareaRef.focus();
-      handleCodeLineNumbers(textareaRef, setRows);
-    });
-
-    if (textareaRef.value) {
-      textareaRef.addEventListener("input", () => {
-        handleCodeLineNumbers(textareaRef, setRows);
-      });
-    }
-  });
 
   const handleRun = async () => {
     try {
@@ -53,25 +69,15 @@ const Playground: Component = () => {
     }
   };
 
-  function handleKeyDown(event: KeyboardEvent) {
-    if (event.key === "Tab" && textareaRef.value) {
-      event.preventDefault();
+  const onValueChange = (value: string) => {
+    setCode(value);
+  };
 
-      const { selectionStart, selectionEnd } = textareaRef;
-
-      // Insert a tab character at the current cursor position
-      const updatedCode =
-        code().substring(0, selectionStart) +
-        "\t" +
-        code().substring(selectionEnd);
-
-      setCode(updatedCode);
-
-      // Set the new selection position
-      const newSelectionPosition = selectionStart + 1;
-      textareaRef.setSelectionRange(newSelectionPosition, newSelectionPosition);
-    }
-  }
+  const onEditorMount = (view: EditorView) => {
+    view.focus();
+    habdleShowTestCode(view);
+    handleKeyDown(view);
+  };
 
   return (
     <>
@@ -117,26 +123,13 @@ const Playground: Component = () => {
             <h2 class="text-xl bg-transparent focus:outline-none font-semibold mb-4 text-white">
               Code Editor
             </h2>
-            <div class="flex">
-              <div class="bg-gray-600 w-8 h-full text-center text-gray-300">
-                <span class="text-white" id="line-number"></span>
-              </div>
-              <textarea
-                ref={textareaRef}
-                class="w-full h-full resize-none focus:outline-none bg-transparent text-white pl-4"
-                rows={rows()}
-                value={code()}
-                onKeyDown={handleKeyDown}
-                onInput={(event) => {
-                  setCode(event.currentTarget.value);
-                  handleCodeLineNumbers(textareaRef, setRows);
-                }}
-                data-gramm="false"
-                data-gramm_editor="false"
-                data-enable-grammarly="false"
-                spellcheck={false}
-              ></textarea>
-            </div>
+            <CodeMirror
+              wrapLine={true}
+              theme={oneDark}
+              extensions={[basicSetup, javascript()]}
+              onValueChange={onValueChange}
+              onEditorMount={onEditorMount}
+            />
           </div>
           <div class="h-1/3 bg-gray-600 p-6 overflow-y-auto rounded-br-3xl">
             <h2 class="text-xl font-semibold mb-4 text-white">Output</h2>

@@ -26,18 +26,17 @@ code {
     monospace;
 }
 
-.logo {
-  margin-top: 15px;
-  animation: spin infinite 15s linear;
-  height: 20vmin;
-  pointer-events: none;
+.cm-tooltip-autocomplete {
+  display: none !important;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cm-editor {
+  height: 25rem !important;
+  font-size: 1rem !important;
+  background-color: #1f2938 !important;
+}
+
+.cm-lineNumbers,
+.cm-foldGutter {
+  background-color: #212d3d !important;
 }

@@ -1,3 +1,5 @@
+import { EditorView } from "@codemirror/view";
+
 export const handleCodeLineNumbers = (
   textareaRef: HTMLTextAreaElement,
   setRows: (arg: number) => void
@@ -18,4 +20,27 @@ export const handleCodeLineNumbers = (
       }
     }
   }
+};
+
+export const handleKeyDown = (view: EditorView) => {
+  view.dom.addEventListener("keydown", (event) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+
+      const { from, to } = view.state.selection.main;
+      const tab = " ".repeat(2);
+      view.dispatch({
+        changes: { from, to, insert: tab },
+      });
+
+      // Set the new selection position
+      const newSelectionPosition = from + tab.length;
+      view.dispatch({
+        selection: {
+          anchor: newSelectionPosition,
+          head: newSelectionPosition,
+        },
+      });
+    }
+  });
 };
