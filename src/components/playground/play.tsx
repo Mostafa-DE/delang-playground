@@ -81,13 +81,15 @@ const Playground: Component = () => {
 
   return (
     <>
-      <Button
-        icon={<VsArrowLeft />}
-        text=""
-        link="/"
-        style={{ padding: "0 0.4rem 0 0" }}
-      />
-      <div class="flex justify-center">
+      <div class="hidden md:block">
+        <Button
+          icon={<VsArrowLeft />}
+          text=""
+          link="/"
+          style={{ padding: "0 0.4rem 0 0" }}
+        />
+      </div>
+      <div class="hidden md:flex md:justify-center">
         <Button
           loading={loading}
           text="Run"
@@ -96,7 +98,7 @@ const Playground: Component = () => {
           style={{ padding: "0.5rem 2.5rem", margin: "-2rem 0 0.5rem 0" }}
         />
       </div>
-      <div class="flex h-full">
+      <div class="hidden md:flex md:h-full">
         <div class="w-8/12 flex flex-col justify-between h-full bg-gray-800 p-6 text-white rounded-tl-3xl rounded-bl-3xl">
           <div class="overflow-y-auto">
             <h2 class="text-xl font-semibold mb-4">Documentation</h2>
@@ -138,6 +140,22 @@ const Playground: Component = () => {
             </pre>
           </div>
         </div>
+      </div>
+      <div class="md:hidden flex flex-col justify-between items-center text-center">
+        <h1 class="text-8xl pb-1 bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-pink-400 to-purple-400">
+          Sorry!
+        </h1>
+        <p class="mt-8 mb-8 text-xl text-sky-400">
+          🎮 The DE Playground is reserved for desktop and laptop adventurers –
+          apologies, mobile users! 📱🚫 It's time to unlock the excitement on
+          larger screens. 🖥️
+        </p>
+        <Button
+          text="Back To Home"
+          link="/"
+          iconPosition="left"
+          icon={<VsArrowLeft size={20} />}
+        />
       </div>
     </>
   );

@@ -18,7 +18,7 @@ const Showcase = () => {
           Unleash innovation in code with DE - where simplicity meets
           versatility.
         </p>
-        <div>
+        <div class="flex justify-center">
           <Button
             text="Start Coding"
             icon={<VsRunAll size={25} />}
