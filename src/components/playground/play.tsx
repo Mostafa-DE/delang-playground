@@ -13,18 +13,22 @@ import { oneDark } from "@codemirror/theme-one-dark";
 import { basicSetup } from "codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { handleKeyDown } from "../playground/helpers";
+import ErrorMessage from "../ui/button/errorMessage";
+import InfoMessage from "../ui/button/infoMessage";
 
-const testCode = `let logName = fun() {
-  return "DE Lang is Awesome! 🚀";
+const testCode = `logs("Hello World!")
+
+let logName = fun() {
+  return "DE Lang! 🚀";
 }
 
 let num1 = 15;
 let num2 = 10;
 
 if num1 > num2: {
-  logName();
+  logs(logName());
 } else {
-  return "Nothing to show :(";
+  logs("Nothing to show :(");
 }
 `;
 
@@ -49,7 +53,9 @@ const habdleShowTestCode = (view: EditorView) => {
 
 const Playground: Component = () => {
   const [code, setCode] = createSignal(testCode);
-  const [output, setOutput] = createSignal("");
+  const [returnData, setReturnData] = createSignal<null | string>(null);
+  const [logs, setLogs] = createSignal<null | string>(null);
+  const [error, setError] = createSignal<null | string>(null);
   const [loading, setLoading] = createSignal(false);
 
   const handleRun = async () => {
@@ -66,9 +72,12 @@ const Playground: Component = () => {
         }),
       });
 
-      const { data } = await res.json();
+      const { data, logs, error } = await res.json();
 
-      setOutput(data);
+      setReturnData(data);
+      setLogs(logs);
+      setError(error);
+
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -106,7 +115,7 @@ const Playground: Component = () => {
         />
       </div>
       <div class="hidden md:flex md:h-full">
-        <div class="w-8/12 flex flex-col justify-between h-full bg-gray-800 p-6 text-white rounded-tl-3xl rounded-bl-3xl">
+        <div class="w-6/12 flex flex-col justify-between h-full bg-gray-800 p-6 text-white rounded-tl-3xl rounded-bl-3xl">
           <div class="overflow-y-auto">
             <h2 class="text-xl font-semibold mb-4">Documentation</h2>
             <Docs />
@@ -142,12 +151,18 @@ const Playground: Component = () => {
           </div>
           <div class="h-1/3 bg-gray-600 p-6 overflow-y-auto rounded-br-3xl">
             <h2 class="text-xl font-semibold mb-4 text-white">Output</h2>
-            <pre class="bg-gray-500 p-3 text-white">
-              {output() || "Output will be displayed here."}
+            <pre class="text-white">
+              {!logs() && !returnData() && !error() && (
+                <InfoMessage msg={"The Output will be shown here!"} />
+              )}
+              {logs() && <InfoMessage msg={logs() ?? ""} />}
+              {returnData() && <InfoMessage msg={returnData() ?? ""} />}
+              {error() && <ErrorMessage msg={error() ?? ""} />}
             </pre>
           </div>
         </div>
       </div>
+
       <div class="md:hidden flex flex-col justify-between items-center text-center">
         <h1 class="text-8xl pb-1 bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-pink-400 to-purple-400">
           Sorry!
