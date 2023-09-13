@@ -1,7 +1,7 @@
 import { VsRunAll } from "solid-icons/vs";
 
 import macbook from "../../assets/terminal.gif";
-import Button from "../ui/button/";
+import Button from "../ui/button";
 
 const Showcase = () => {
   return (

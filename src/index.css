@@ -40,3 +40,7 @@ code {
 .cm-foldGutter {
   background-color: #212d3d !important;
 }
+
+::-webkit-scrollbar {
+  width: 0px;
+}
