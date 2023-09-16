@@ -23,9 +23,7 @@ const Playground: Component = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          code: code(),
-        }),
+        body: code(),
       });
 
       const { data, logs, error } = await res.json();
