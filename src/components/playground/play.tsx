@@ -4,11 +4,10 @@ import Button from "../ui/button";
 import { VsArrowLeft, VsRunAll } from "solid-icons/vs";
 import Docs from "../../docs";
 import Editor from "./editor";
-import { testCode } from "./testCode";
 import { A } from "@solidjs/router";
 
 const Playground: Component = () => {
-  const [code, setCode] = createSignal(testCode);
+  const [code, setCode] = createSignal("");
   const [returnData, setReturnData] = createSignal<null | string>(null);
   const [logs, setLogs] = createSignal<null | string>(null);
   const [error, setError] = createSignal<null | string>(null);

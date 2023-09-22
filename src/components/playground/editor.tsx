@@ -7,7 +7,7 @@ import InfoMessage from "../ui/infoMessage";
 import type { EditorView } from "@codemirror/view";
 import { Component } from "solid-js";
 import { handleKeyDown } from "../playground/helpers";
-import { testCode } from "../playground/testCode";
+import { examples } from "../../docs/examples";
 
 type Props = {
   setCode: (code: string) => void;
@@ -22,7 +22,7 @@ const handleShowTestCode = (view: EditorView) => {
     changes: {
       from,
       to,
-      insert: testCode,
+      insert: examples[0].code,
     },
   });
 
@@ -48,10 +48,10 @@ const Editor: Component<Props> = ({ setCode, logs, returnData, error }) => {
 
   return (
     <div class="w-3/4 flex flex-col">
-      <div class="h-full bg-gray-700 p-6 rounded-tr-3xl overflow-auto">
-        <h2 class="text-xl bg-transparent focus:outline-none font-semibold mb-4 text-white">
-          Code Editor
-        </h2>
+      <div class="h-3/2 bg-gray-700 p-6 rounded-tr-3xl overflow-auto">
+        <pre class="text-md mb-4 text-white">
+          <code class=" bg-slate-600 rounded p-1 ">{examples[0].filename}</code>
+        </pre>
         <CodeMirror
           spellcheck={false}
           wrapLine={true}
@@ -68,8 +68,13 @@ const Editor: Component<Props> = ({ setCode, logs, returnData, error }) => {
             <InfoMessage msg={"The Output will be shown here!"} />
           )}
           {logs() && <InfoMessage msg={logs() ?? ""} />}
-          {returnData() && <InfoMessage msg={returnData() ?? ""} />}
           {error() && <ErrorMessage msg={error() ?? ""} />}
+
+          <h2 class="text-xl font-semibold mb-4 text-white">Return Data</h2>
+          {!returnData() && (
+            <InfoMessage msg={"The returned values will be shown here!"} />
+          )}
+          {returnData() && <InfoMessage msg={returnData() ?? ""} />}
         </pre>
       </div>
     </div>
