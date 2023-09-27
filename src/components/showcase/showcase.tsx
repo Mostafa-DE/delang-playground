@@ -20,7 +20,7 @@ const Showcase = () => {
         </p>
         <div class="flex justify-center">
           <Button
-            text="Start Coding"
+            text="Start The Tour"
             icon={<VsRunAll size={25} />}
             link={"/play"}
             iconPosition={"right"}

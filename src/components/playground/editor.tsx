@@ -5,67 +5,101 @@ import { javascript } from "@codemirror/lang-javascript";
 import ErrorMessage from "../ui/errorMessage";
 import InfoMessage from "../ui/infoMessage";
 import type { EditorView } from "@codemirror/view";
-import { Component } from "solid-js";
+import { Component, createEffect } from "solid-js";
 import { handleKeyDown } from "../playground/helpers";
-import { examples } from "../../docs/examples";
+import { basics, welcome } from "../../docs/examples";
+import { useParams } from "@solidjs/router";
 
 type Props = {
+  code: () => string;
   setCode: (code: string) => void;
   logs: () => string | null;
   returnData: () => string | null;
   error: () => string | null;
+  exampleData: () => { id: number; slug: string };
 };
 
-const handleShowTestCode = (view: EditorView) => {
-  const { from, to } = view.state.selection.main;
-  view.dispatch({
-    changes: {
-      from,
-      to,
-      insert: examples[0].code,
-    },
-  });
+type Section = Array<{
+  slug: string;
+  code: string;
+}>;
 
-  // move cursor to the end
-  view.dispatch({
-    selection: {
-      anchor: view.state.doc.length,
-      head: view.state.doc.length,
-    },
-  });
+const getExample = (section: Section, slug: string) => {
+  return section.find((ex) => ex.slug === slug) ?? section[0];
 };
 
-const Editor: Component<Props> = ({ setCode, logs, returnData, error }) => {
+const getCurrentSectionData = (section: string) => {
+  switch (section) {
+    case "basics":
+      return basics;
+    case "welcome":
+      return welcome;
+    default:
+      return welcome;
+  }
+};
+
+const Editor: Component<Props> = ({
+  code,
+  setCode,
+  logs,
+  returnData,
+  error,
+}) => {
   const onValueChange = (value: string) => {
     setCode(value);
   };
 
-  const onEditorMount = (view: EditorView) => {
+  const params = useParams();
+
+  const sectionData = getCurrentSectionData(params.section);
+
+  const handleOnEditorMount = (view: EditorView) => {
     view.focus();
-    handleShowTestCode(view);
     handleKeyDown(view);
+    setCode(getExample(sectionData, params.example).code);
+
+    // move cursor to the end
+    view.dispatch({
+      selection: {
+        anchor: view.state.doc.length,
+        head: view.state.doc.length,
+      },
+    });
+
+    // prevent ctrl + s from opening the browser save dialog
+    view.dom.addEventListener("keydown", (event) => {
+      if (event.ctrlKey && event.key === "s") {
+        event.preventDefault();
+      }
+    });
   };
+
+  createEffect(() => {
+    setCode(getExample(sectionData, params.example).code);
+  }, [params.example]);
 
   return (
     <div class="w-3/4 flex flex-col">
-      <div class="h-3/2 bg-gray-700 p-6 rounded-tr-3xl overflow-auto">
+      <div class="h-3/2 bg-gray-700 p-6 rounded-tr-3xl overflow-hidden">
         <pre class="text-md mb-4 text-white">
-          <code class=" bg-slate-600 rounded p-1 ">{examples[0].filename}</code>
+          <code class=" bg-slate-600 rounded p-1 ">{`${params.example}.de`}</code>
         </pre>
         <CodeMirror
           spellcheck={false}
+          value={code()}
           wrapLine={true}
           theme={oneDark}
           extensions={[basicSetup, javascript()]}
           onValueChange={onValueChange}
-          onEditorMount={onEditorMount}
+          onEditorMount={handleOnEditorMount}
         />
       </div>
       <div class="h-1/2 bg-gray-700 p-6 overflow-y-auto rounded-br-3xl">
-        <h2 class="text-xl font-semibold mb-4 text-white">Output</h2>
+        <h2 class="text-xl font-semibold mb-4 text-white">Logs</h2>
         <pre class="text-white">
           {!logs() && !returnData() && !error() && (
-            <InfoMessage msg={"The Output will be shown here!"} />
+            <InfoMessage msg={"The logs will be shown here!"} />
           )}
           {logs() && <InfoMessage msg={logs() ?? ""} />}
           {error() && <ErrorMessage msg={error() ?? ""} />}

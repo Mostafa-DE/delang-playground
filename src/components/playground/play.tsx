@@ -2,16 +2,36 @@ import type { Component } from "solid-js";
 import { createSignal } from "solid-js";
 import Button from "../ui/button";
 import { VsArrowLeft, VsRunAll } from "solid-icons/vs";
-import Docs from "../../docs";
+import Docs from "../../docs/docs";
 import Editor from "./editor";
-import { A } from "@solidjs/router";
+import { A, Params, useParams } from "@solidjs/router";
+import { getCurrentSectionData } from "../../docs/utils";
+import TableOfContent from "../contentOfTable";
+
+const getExampleDataFromParams = (params: Params) => {
+  const { section, example } = params;
+  let dataToReturn = { id: 0, slug: "" };
+  const sectionData = getCurrentSectionData(section);
+  sectionData.forEach((ex, i) => {
+    if (ex.slug === example) {
+      dataToReturn = { id: i, slug: ex.slug };
+    }
+  });
+
+  return dataToReturn;
+};
 
 const Playground: Component = () => {
+  const params = useParams();
   const [code, setCode] = createSignal("");
   const [returnData, setReturnData] = createSignal<null | string>(null);
   const [logs, setLogs] = createSignal<null | string>(null);
   const [error, setError] = createSignal<null | string>(null);
   const [loading, setLoading] = createSignal(false);
+  const [example, setExample] = createSignal<{
+    id: number;
+    slug: string;
+  }>(getExampleDataFromParams(params));
 
   const handleRun = async () => {
     try {
@@ -40,36 +60,37 @@ const Playground: Component = () => {
 
   return (
     <>
-      <div class="hidden md:block">
+      <div class="hidden lg:flex justify-between items-center">
         <A
-          href="/"
+          href="/play"
           class="relative inline-flex items-center justify-center px-2 py-1 overflow-hidden font-medium bg-sky-500 rounded-lg shadow-2xl group"
         >
           <span class="relative text-white flex items-center justify-center">
             <VsArrowLeft />
           </span>
         </A>
-      </div>
-      <div class="hidden md:flex md:justify-center">
         <Button
           loading={loading}
           text="Run"
           icon={<VsRunAll size={17} />}
           handleClick={handleRun}
-          style={{ padding: "0.5rem 2.5rem", margin: "-2rem 0 0.5rem 0" }}
+          style={{ padding: "0.3rem 2.5rem", margin: "0 0 0.5rem 0" }}
         />
+        <TableOfContent />
       </div>
-      <div class="hidden md:flex md:h-full">
-        <Docs />
+      <div class="hidden lg:flex md:h-full">
+        <Docs exampleData={example} setExample={setExample} setCode={setCode} />
         <Editor
+          code={code}
           logs={logs}
           returnData={returnData}
           setCode={setCode}
           error={error}
+          exampleData={example}
         />
       </div>
 
-      <div class="md:hidden flex flex-col justify-between items-center text-center">
+      <div class="lg:hidden flex flex-col justify-between items-center text-center">
         <h1 class="text-8xl pb-1 bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-pink-400 to-purple-400">
           Sorry!
         </h1>

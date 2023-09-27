@@ -3,6 +3,7 @@ import NotFoundPage from "./components/404";
 
 import Home from "./components/home";
 import Playground from "./components/playground";
+import TourGuide from "./components/TourGuide/tour";
 import "./index.css";
 import { Route, Router, Routes } from "@solidjs/router";
 
@@ -12,7 +13,8 @@ const App: Component = () => {
       <Router>
         <Routes>
           <Route path="/" component={Home} />
-          <Route path="/play" component={Playground} />
+          <Route path="/play" component={TourGuide} />
+          <Route path="/play/:section/:example" component={Playground} />
           <Route path="/*" component={NotFoundPage} />
         </Routes>
       </Router>
