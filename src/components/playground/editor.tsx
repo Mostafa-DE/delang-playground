@@ -17,6 +17,7 @@ type Props = {
   returnData: () => string | null;
   error: () => string | null;
   exampleData: () => { id: number; slug: string };
+  timeout: () => string;
 };
 
 type Section = Array<{
@@ -45,6 +46,7 @@ const Editor: Component<Props> = ({
   logs,
   returnData,
   error,
+  timeout,
 }) => {
   const onValueChange = (value: string) => {
     setCode(value);
@@ -96,6 +98,9 @@ const Editor: Component<Props> = ({
         />
       </div>
       <div class="h-1/2 bg-gray-700 p-6 overflow-y-auto rounded-br-3xl">
+        {/* {Boolean(timeout()) && (
+          <ErrorMessage msg={`Timeout: ${timeout() ?? ""}`} />
+        )} */}
         <h2 class="text-xl font-semibold mb-4 text-white">Logs</h2>
         <pre class="text-white">
           {!logs() && !returnData() && !error() && (
@@ -103,6 +108,9 @@ const Editor: Component<Props> = ({
           )}
           {logs() && <InfoMessage msg={logs() ?? ""} />}
           {error() && <ErrorMessage msg={error() ?? ""} />}
+          {timeout() === "true" && (
+            <ErrorMessage msg={"Timeout The code took too long to execute."} />
+          )}
 
           <h2 class="text-xl font-semibold mb-4 text-white">Return Data</h2>
           {!returnData() && (

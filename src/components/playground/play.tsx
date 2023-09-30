@@ -26,6 +26,7 @@ const Playground: Component = () => {
   const [code, setCode] = createSignal("");
   const [returnData, setReturnData] = createSignal<null | string>(null);
   const [logs, setLogs] = createSignal<null | string>(null);
+  const [timeout, setTimeout] = createSignal<string>("false");
   const [error, setError] = createSignal<null | string>(null);
   const [loading, setLoading] = createSignal(false);
   const [example, setExample] = createSignal<{
@@ -45,11 +46,12 @@ const Playground: Component = () => {
         body: code(),
       });
 
-      const { data, logs, error } = await res.json();
+      const { data, logs, error, timeout } = await res.json();
 
       setReturnData(data);
       setLogs(logs);
       setError(error);
+      setTimeout(timeout);
 
       setLoading(false);
     } catch (error) {
@@ -83,6 +85,7 @@ const Playground: Component = () => {
         <Editor
           code={code}
           logs={logs}
+          timeout={timeout}
           returnData={returnData}
           setCode={setCode}
           error={error}
