@@ -66,13 +66,6 @@ const Docs: Component<Props> = ({ exampleData, setExample, setCode }) => {
     handleGetExample(sectionData[id - 1].slug);
   };
 
-  const nextExample = `/play/${params.section}/${
-    sectionData[exampleData().id + 1]?.slug ?? sectionData[0].slug
-  }`;
-  const prevExample = `/play/${params.section}/${
-    sectionData[exampleData().id - 1]?.slug ?? sectionData[0].slug
-  }`;
-
   effect(async () => {
     await handleGetExample(params.example);
   });
@@ -94,25 +87,29 @@ const Docs: Component<Props> = ({ exampleData, setExample, setCode }) => {
       <div class="flex justify-center mt-4">
         <div class="flex">
           <A
-            href={prevExample}
+            href={`/play/${params.section}/${
+              sectionData[exampleData().id]?.slug
+            }`}
             class="relative inline-flex items-center justify-center mr-3 px-1 overflow-hidden font-medium bg-sky-500 rounded-lg shadow-2xl group"
           >
             <span class="relative text-white flex items-center justify-center">
               <RiArrowsArrowLeftDoubleFill
-                size={22}
                 onclick={handlePrevExample}
+                size={22}
               />
             </span>
           </A>
           {exampleData().id + 1} of {sectionData.length}
           <A
-            href={nextExample}
+            href={`/play/${params.section}/${
+              sectionData[exampleData().id]?.slug
+            }`}
             class="relative inline-flex items-center justify-center ml-3 px-1 overflow-hidden font-medium bg-sky-500 text-indigo-600 rounded-lg shadow-2xl group"
           >
             <span class="relative text-white flex items-center justify-center">
               <RiArrowsArrowRightDoubleFill
-                size={22}
                 onClick={handleNextExample}
+                size={22}
               />
             </span>
           </A>

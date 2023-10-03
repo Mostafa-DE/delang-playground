@@ -18,6 +18,15 @@ a {
   @apply text-sky-500;
 }
 
+ul {
+  @apply pl-8;
+  @apply list-disc;
+}
+
+li {
+  @apply mt-2;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -40,6 +49,17 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+p code,
+li code {
+  background-color: transparent;
+  color: #2fc0ff;
+}
+
+p strong,
+li strong {
+  color: #fd64b1cd;
 }
 
 .cm-tooltip-autocomplete {

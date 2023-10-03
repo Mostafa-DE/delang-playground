@@ -83,6 +83,7 @@ const Playground: Component = () => {
       <div class="hidden lg:flex md:h-full">
         <Docs exampleData={example} setExample={setExample} setCode={setCode} />
         <Editor
+          handleRun={handleRun}
           code={code}
           logs={logs}
           timeout={timeout}

@@ -16,16 +16,16 @@ const TourGuide: Component = () => {
         </A>
       </div>
       <div class="flex flex-col justify-center items-center">
-        <h1 class="text-white">
-          Welcom To DE Tour Guide, Please Select Your Destination
-        </h1>
-        <A class="underline text-blue-500 mt-8 text-lg" href="/play/welcome/w1">
+        <span class="mb-2 text-white text-center text-2xl md:text-4xl">
+          Welcom To DE Tour Guide
+        </span>
+        <span class="text-white text-center text-xl md:text-2xl">
+          Please select the section you want to learn
+        </span>
+        <A class="text-blue-500 mt-8 text-xl" href="/play/welcome/w1">
           Welcome, Hola, مرحبا
         </A>
-        <A
-          class="underline text-blue-500 mt-8 text-lg"
-          href="/play/basics/variables"
-        >
+        <A class="text-blue-500 mt-4 text-xl" href="/play/basics/welcome">
           Basics
         </A>
       </div>

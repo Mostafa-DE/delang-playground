@@ -18,6 +18,7 @@ type Props = {
   error: () => string | null;
   exampleData: () => { id: number; slug: string };
   timeout: () => string;
+  handleRun: () => Promise<void>;
 };
 
 type Section = Array<{
@@ -47,6 +48,7 @@ const Editor: Component<Props> = ({
   returnData,
   error,
   timeout,
+  handleRun,
 }) => {
   const onValueChange = (value: string) => {
     setCode(value);
@@ -69,13 +71,19 @@ const Editor: Component<Props> = ({
       },
     });
 
-    // prevent ctrl + s from opening the browser save dialog
-    view.dom.addEventListener("keydown", (event) => {
-      if (event.ctrlKey && event.key === "s") {
-        event.preventDefault();
+    view.dom.addEventListener("keydown", (evnt) => {
+      if (evnt.ctrlKey && evnt.key === "s") {
+        evnt.preventDefault();
+      }
+
+      if (evnt.altKey && evnt.key === "Enter") {
+        evnt.preventDefault();
+        handleRun();
       }
     });
   };
+
+  console.log(error());
 
   createEffect(() => {
     setCode(getExample(sectionData, params.example).code);
@@ -98,9 +106,6 @@ const Editor: Component<Props> = ({
         />
       </div>
       <div class="h-1/2 bg-gray-700 p-6 overflow-y-auto rounded-br-3xl">
-        {/* {Boolean(timeout()) && (
-          <ErrorMessage msg={`Timeout: ${timeout() ?? ""}`} />
-        )} */}
         <h2 class="text-xl font-semibold mb-4 text-white">Logs</h2>
         <pre class="text-white">
           {!logs() && !returnData() && !error() && (
