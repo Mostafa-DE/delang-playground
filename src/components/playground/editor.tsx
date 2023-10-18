@@ -7,7 +7,7 @@ import InfoMessage from "../ui/infoMessage";
 import type { EditorView } from "@codemirror/view";
 import { Component, createEffect } from "solid-js";
 import { handleKeyDown } from "../playground/helpers";
-import { basics, welcome } from "../../docs/examples";
+import { getCurrentSectionData } from "../../docs/utils";
 import { useParams } from "@solidjs/router";
 
 type Props = {
@@ -28,17 +28,6 @@ type Section = Array<{
 
 const getExample = (section: Section, slug: string) => {
   return section.find((ex) => ex.slug === slug) ?? section[0];
-};
-
-const getCurrentSectionData = (section: string) => {
-  switch (section) {
-    case "basics":
-      return basics;
-    case "welcome":
-      return welcome;
-    default:
-      return welcome;
-  }
 };
 
 const Editor: Component<Props> = ({
@@ -91,7 +80,7 @@ const Editor: Component<Props> = ({
 
   return (
     <div class="w-3/4 flex flex-col">
-      <div class="h-3/2 bg-gray-700 p-6 rounded-tr-3xl overflow-hidden">
+      <div class="bg-gray-700 p-6 overflow-hidden">
         <pre class="text-md mb-4 text-white">
           <code class=" bg-slate-600 rounded p-1 ">{`${params.example}.de`}</code>
         </pre>
@@ -105,7 +94,7 @@ const Editor: Component<Props> = ({
           onEditorMount={handleOnEditorMount}
         />
       </div>
-      <div class="h-1/2 bg-gray-700 p-6 overflow-y-auto rounded-br-3xl">
+      <div class="h-1/3 bg-gray-700 p-6 overflow-y-auto">
         <h2 class="text-xl font-semibold mb-4 text-white">Logs</h2>
         <pre class="text-white">
           {!logs() && !returnData() && !error() && (

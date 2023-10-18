@@ -71,7 +71,7 @@ const Docs: Component<Props> = ({ exampleData, setExample, setCode }) => {
   });
 
   return (
-    <div class="w-6/12 flex flex-col justify-between h-full bg-gray-800 p-6 text-white rounded-tl-3xl rounded-bl-3xl">
+    <div class="w-6/12 flex flex-col justify-between h-full bg-gray-800 p-6 text-white">
       <div class="overflow-y-auto">
         <div class="text-white max-w-lg">
           {loading() ? (
