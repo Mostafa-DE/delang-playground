@@ -15,8 +15,7 @@ const Showcase = () => {
           🚀
         </h1>
         <p class="leading-normal text-sky-300 text- md:text-2xl mb-8 text-center md:text-left">
-          Unleash innovation in code with DE - where simplicity meets
-          versatility.
+          Let the coding fun begin with DE - where ease and flexibility collide!
         </p>
         <div class="flex justify-center">
           <Button
@@ -25,6 +24,9 @@ const Showcase = () => {
             link={"/play"}
             iconPosition={"right"}
           />
+        </div>
+        <div class="flex justify-center mt-8">
+          <Button text="About Delang 👋" link={"/about"} />
         </div>
       </div>
       <div class="w-full xl:w-3/5 md:flex md:justify-center p-12 overflow-hidden">
