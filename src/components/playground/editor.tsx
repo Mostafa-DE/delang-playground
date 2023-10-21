@@ -72,7 +72,31 @@ const Editor: Component<Props> = ({
     });
   };
 
-  console.log(error());
+  const handleLogsValues = () => {
+    if (logs() && !error()) {
+      return <InfoMessage msg={logs() ?? ""} />;
+    }
+
+    if (error()) {
+      return <ErrorMessage msg={error() ?? ""} />;
+    }
+
+    if (timeout() === "true") {
+      return (
+        <ErrorMessage msg={"Timeout The code took too long to execute."} />
+      );
+    }
+
+    return <InfoMessage msg={"The logs will be shown here!"} />;
+  };
+
+  const handleReturnData = () => {
+    if (returnData()) {
+      return <InfoMessage msg={returnData() ?? ""} />;
+    }
+
+    return <InfoMessage msg={"The returned values will be shown here!"} />;
+  };
 
   createEffect(() => {
     setCode(getExample(sectionData, params.example).code);
@@ -80,7 +104,7 @@ const Editor: Component<Props> = ({
 
   return (
     <div class="w-3/4 flex flex-col">
-      <div class="bg-gray-700 p-6 overflow-hidden">
+      <div class="bg-gray-700 p-6 ">
         <pre class="text-md mb-4 text-white">
           <code class=" bg-slate-600 rounded p-1 ">{`${params.example}.de`}</code>
         </pre>
@@ -94,23 +118,12 @@ const Editor: Component<Props> = ({
           onEditorMount={handleOnEditorMount}
         />
       </div>
-      <div class="h-1/3 bg-gray-700 p-6 overflow-y-auto">
+      <div class="h-1/2 bg-gray-700 p-6 overflow-y-auto">
         <h2 class="text-xl font-semibold mb-4 text-white">Logs</h2>
         <pre class="text-white">
-          {!logs() && !returnData() && !error() && (
-            <InfoMessage msg={"The logs will be shown here!"} />
-          )}
-          {logs() && <InfoMessage msg={logs() ?? ""} />}
-          {error() && <ErrorMessage msg={error() ?? ""} />}
-          {timeout() === "true" && (
-            <ErrorMessage msg={"Timeout The code took too long to execute."} />
-          )}
-
+          {handleLogsValues()}
           <h2 class="text-xl font-semibold mb-4 text-white">Return Data</h2>
-          {!returnData() && (
-            <InfoMessage msg={"The returned values will be shown here!"} />
-          )}
-          {returnData() && <InfoMessage msg={returnData() ?? ""} />}
+          {handleReturnData()}
         </pre>
       </div>
     </div>
