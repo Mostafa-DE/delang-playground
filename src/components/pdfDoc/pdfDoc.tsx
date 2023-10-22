@@ -1,8 +1,9 @@
 import type { Component } from "solid-js";
 import PDFViewerApp from "./PDFViewerApp";
+import deDoc from "../../assets/test.pdf";
 
 const PdfDoc: Component = () => {
-  const pdfFilePath = "src/assets/test.pdf";
+  const pdfFilePath = deDoc;
   return <PDFViewerApp {...{ pdfFilePath }} />;
 };
 
