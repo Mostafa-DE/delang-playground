@@ -1,15 +1,9 @@
 import type { Component } from "solid-js";
-import Header from "../header";
+import PDFViewerApp from "./PDFViewerApp";
 
 const PdfDoc: Component = () => {
-  return (
-    <>
-      <Header />
-      <div class="h-full">
-        <h1 class="text-5xl text-center text-white">Delang PDF Doc</h1>
-      </div>
-    </>
-  );
+  const pdfFilePath = "src/assets/test.pdf";
+  return <PDFViewerApp {...{ pdfFilePath }} />;
 };
 
 export default PdfDoc;
