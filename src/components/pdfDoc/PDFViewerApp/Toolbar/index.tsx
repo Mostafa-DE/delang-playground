@@ -48,9 +48,7 @@ const Toolbar = ({
 
   return (
     <>
-      <div
-        class={`w-full h-9 flex items-center justify-between bg-slate-50 border-b border-b-slate-300 shadow-sm text-xs select-none sticky top-0 bg-opacity-100 backdrop-blur z-10`}
-      >
+      <div class="w-full overflow-x-auto h-9 flex items-center justify-between bg-slate-50 border-b border-b-slate-300 shadow-sm text-xs select-none sticky top-0 bg-opacity-100 backdrop-blur z-10">
         <div class="px-1 flex items-center space-x-1">
           <A
             class={`flex enabled:hover:bg-slate-200 enabled:hover:text-black text-slate-500 disabled:text-slate-300 p-1 rounded-sm transition-all group relative focus:border-blue-400 focus:ring-0 focus:shadow outline-none border border-transparent`}
@@ -60,18 +58,22 @@ const Toolbar = ({
             <span class="text-black">Back</span>
           </A>
 
-          <Splitter />
+          <div class="hidden md:flex">
+            <Splitter />
+          </div>
 
-          <button
-            class={`enabled:hover:bg-slate-200 enabled:hover:text-black text-slate-500 disabled:text-slate-300 p-1 rounded-sm transition-all group relative focus:border-blue-400 focus:ring-0 focus:shadow outline-none border border-transparent`}
-            onClick={() => setIsThumbsbarOpen(!isThumbsbarOpen())}
-          >
-            {isThumbsbarOpen() ? (
-              <VsLayoutSidebarLeftOff class="h-4 w-4" />
-            ) : (
-              <VsLayoutSidebarLeft class="h-4 w-4" />
-            )}
-          </button>
+          <div class="hidden md:flex">
+            <button
+              class={`enabled:hover:bg-slate-200 enabled:hover:text-black text-slate-500 disabled:text-slate-300 p-1 rounded-sm transition-all group relative focus:border-blue-400 focus:ring-0 focus:shadow outline-none border border-transparent`}
+              onClick={() => setIsThumbsbarOpen(!isThumbsbarOpen())}
+            >
+              {isThumbsbarOpen() ? (
+                <VsLayoutSidebarLeftOff class="h-4 w-4" />
+              ) : (
+                <VsLayoutSidebarLeft class="h-4 w-4" />
+              )}
+            </button>
+          </div>
 
           <Splitter />
 
@@ -145,17 +147,21 @@ const Toolbar = ({
               />
             </form>
 
-            <span> of {store.numPages}</span>
+            <span class="w-8"> of {store.numPages}</span>
           </div>
         </div>
 
         <div class="px-1 space-x-1 flex items-center justify-end">
-          <FreetextMenu {...{ store }} />
-          <InkMenu {...{ store }} />
+          <div class="hidden md:flex">
+            <FreetextMenu {...{ store }} />
+            <InkMenu {...{ store }} />
+          </div>
 
           <Splitter />
 
-          <MoreActionsMenu {...{ store }} />
+          <div class="hidden md:block">
+            <MoreActionsMenu {...{ store }} />
+          </div>
         </div>
       </div>
     </>

@@ -95,12 +95,16 @@ const Playground: Component = () => {
       </div>
 
       <div class="lg:hidden flex flex-col justify-between items-center text-center">
-        <h1 class="text-8xl pb-1 bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-pink-400 to-purple-400">
+        <h1 class="text-7xl mt-10 pb-1 bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-pink-400 to-purple-400">
           Sorry!
         </h1>
-        <p class="mt-8 mb-8 text-xl text-sky-400">
-          The DE Playground is meant for desktop and laptop users only.
-          <br /> <br /> Please use a desktop computer instead.️
+        <p class="mt-14 mb-2 text-xl text-sky-300">
+          The DE Playground is designed for those using desktop and laptop
+          computers.
+        </p>
+        <p class="mt-2 mb-8 text-xl text-sky-300">
+          Kindly swap out your other devices for a desktop computer to join in
+          the fun! 🖥️😄
         </p>
         <Button
           text="Back To Home"

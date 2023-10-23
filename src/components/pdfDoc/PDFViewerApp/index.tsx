@@ -14,7 +14,7 @@ const PDFViewerApp: Component<PDFViewerAppProps> = ({ pdfFilePath }) => {
     pdfSlickStore: store,
     PDFSlickViewer,
   } = usePDFSlick(pdfFilePath);
-  const [isThumbsbarOpen, setIsThumbsbarOpen] = createSignal(true);
+  const [isThumbsbarOpen, setIsThumbsbarOpen] = createSignal(false);
 
   return (
     <div class="absolute inset-0 bg-slate-200/90 flex flex-col pdfSlick">
