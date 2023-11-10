@@ -98,13 +98,9 @@ const Playground: Component = () => {
         <h1 class="text-7xl mt-10 pb-1 bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-pink-400 to-purple-400">
           Sorry!
         </h1>
-        <p class="mt-14 mb-2 text-xl text-sky-300">
-          The DE Playground is designed for those using desktop and laptop
-          computers.
-        </p>
-        <p class="mt-2 mb-8 text-xl text-sky-300">
-          Kindly swap out your other devices for a desktop computer to join in
-          the fun! 🖥️😄
+        <p class="my-8 text-xl text-sky-300">
+          The DE Playground is not designed for small screens. Please access the
+          playground on a larger screen.
         </p>
         <Button
           text="Back To Home"

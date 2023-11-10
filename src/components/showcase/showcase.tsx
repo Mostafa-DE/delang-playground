@@ -15,7 +15,7 @@ const Showcase = () => {
           🚀
         </h1>
         <p class="leading-normal text-sky-300 text- md:text-2xl mb-8 text-center md:text-left">
-          Let the coding fun begin with DE - where ease and flexibility collide!
+          An interpreted, functional, high-level programming language.
         </p>
         <div class="flex justify-center">
           <Button
