@@ -1,4 +1,11 @@
-import { basics, welcome, flowControl, dataStructures } from "../docs/examples";
+import {
+  basics,
+  welcome,
+  flowControl,
+  dataStructures,
+  builtInFunc,
+  advanced,
+} from "../docs/examples";
 
 export const getCurrentSectionData = (section: string) => {
   switch (section) {
@@ -10,6 +17,10 @@ export const getCurrentSectionData = (section: string) => {
       return flowControl;
     case "dataStructures":
       return dataStructures;
+    case "builtInFunc":
+      return builtInFunc;
+    case "advanced":
+      return advanced;
     default:
       return welcome;
   }

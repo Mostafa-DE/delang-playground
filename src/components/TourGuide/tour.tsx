@@ -19,23 +19,41 @@ const TourGuide: Component = () => {
         <span class="mb-2 text-white text-center text-2xl md:text-4xl">
           Welcom To DE Tour Guide
         </span>
-        <span class="text-white text-center text-xl md:text-2xl">
+        <span class="text-white text-center text-xl md:text-2xl u">
           Please select the section you want to learn
         </span>
-        <A class="text-blue-500 mt-8 text-xl" href="/play/welcome/w1">
+        <A class="text-white mt-8 text-xl border-b-2" href="/play/welcome/w1">
           Welcome, Hola, مرحبا
         </A>
-        <A class="text-blue-500 mt-4 text-xl" href="/play/basics/welcome">
+        <A
+          class="text-white mt-4 text-xl border-b-2"
+          href="/play/basics/welcome"
+        >
           Basics
         </A>
-        <A class="text-blue-500 mt-4 text-xl" href="/play/flowControl/welcome">
+        <A
+          class="text-white mt-4 text-xl border-b-2"
+          href="/play/flowControl/welcome"
+        >
           Flow Control
         </A>
         <A
-          class="text-blue-500 mt-4 text-xl"
+          class="text-white mt-4 text-xl border-b-2"
           href="/play/dataStructures/welcome"
         >
           Data Structures
+        </A>
+        <A
+          class="text-white mt-4 text-xl border-b-2"
+          href="/play/builtInFunc/welcome"
+        >
+          Built-in Functions
+        </A>
+        <A
+          class="text-white mt-4 text-xl border-b-2"
+          href="/play/advanced/welcome"
+        >
+          Advanced Topics
         </A>
       </div>
     </div>
