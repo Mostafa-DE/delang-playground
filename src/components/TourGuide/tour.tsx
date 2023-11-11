@@ -16,47 +16,50 @@ const TourGuide: Component = () => {
         </A>
       </div>
       <div class="flex flex-col justify-center items-center">
-        <span class="mb-2 text-white text-center text-2xl md:text-4xl">
+        <span class="mb-2 bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-pink-400 to-purple-400 text-center text-2xl md:text-4xl">
           Welcom To DE Tour Guide
         </span>
-        <span class="text-white text-center text-xl md:text-2xl u">
+        <span class="text-center text-xl md:text-2xl bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-pink-400 to-purple-400">
           Please select the section you want to learn
         </span>
-        <A class="text-white mt-8 text-xl border-b-2" href="/play/welcome/w1">
+        <A
+          class="text-white mt-8 text-xl border-b-2 hover:text-blue-500 transition hover:border-blue-500"
+          href="/play/welcome/w1"
+        >
           Welcome, Hola, مرحبا
         </A>
         <A
-          class="text-white mt-4 text-xl border-b-2"
+          class="text-white mt-4 text-xl border-b-2 hover:text-blue-500 transition hover:border-blue-500"
           href="/play/dataTypes/welcome"
         >
           Data Types
         </A>
         <A
-          class="text-white mt-4 text-xl border-b-2"
+          class="text-white mt-4 text-xl border-b-2 hover:text-blue-500 transition hover:border-blue-500"
           href="/play/basics/welcome"
         >
           Basics
         </A>
         <A
-          class="text-white mt-4 text-xl border-b-2"
+          class="text-white mt-4 text-xl border-b-2 hover:text-blue-500 transition hover:border-blue-500"
           href="/play/flowControl/welcome"
         >
           Flow Control
         </A>
         <A
-          class="text-white mt-4 text-xl border-b-2"
+          class="text-white mt-4 text-xl border-b-2 hover:text-blue-500 transition hover:border-blue-500"
           href="/play/dataStructures/welcome"
         >
           Data Structures
         </A>
         <A
-          class="text-white mt-4 text-xl border-b-2"
+          class="text-white mt-4 text-xl border-b-2 hover:text-blue-500 transition hover:border-blue-500"
           href="/play/builtInFunc/welcome"
         >
           Built-in Functions
         </A>
         <A
-          class="text-white mt-4 text-xl border-b-2"
+          class="text-white mt-4 text-xl border-b-2 hover:text-blue-500 transition hover:border-blue-500"
           href="/play/advanced/welcome"
         >
           Advanced Topics

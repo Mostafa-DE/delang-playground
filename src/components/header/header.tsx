@@ -19,7 +19,7 @@ const Header = () => {
         </A>
         <div class="flex w-1/2 justify-end content-center">
           <a
-            href="https://github.com/Mostafa-DE"
+            href="https://github.com/Mostafa-DE/delang"
             class="hover:cursor-pointer mr-5 mt-0.5"
             target="_blank"
           >
@@ -31,13 +31,6 @@ const Header = () => {
             target="_blank"
           >
             <AiFillLinkedin size={30} fill="#fff" />
-          </a>
-          <a
-            href="https://twitter.com/m_fayyad0_0"
-            class="hover:cursor-pointer ml-5"
-            target="_blank"
-          >
-            <AiOutlineTwitter size={30} fill="#fff" />
           </a>
         </div>
       </div>
