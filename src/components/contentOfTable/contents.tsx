@@ -1,7 +1,43 @@
-import { createSignal } from "solid-js";
+import { Component, createSignal } from "solid-js";
+import { A, useParams } from "@solidjs/router";
+import { getCurrentSectionData } from "../../docs/utils";
 
-const Contents = () => {
+type Props = {
+  setExample: (example: { id: number; slug: string }) => void;
+};
+
+const Contents: Component<Props> = ({ setExample }) => {
   const [showDrawer, setShowDrawer] = createSignal(false);
+  const params = useParams();
+
+  const handleSetExample = (slug: string) => {
+    const sectionData = getCurrentSectionData(params.section);
+    const id = sectionData.findIndex((ex) => ex.slug === slug);
+
+    setExample({ id, slug });
+
+    return `/play/${params.section}/${slug}` ?? "#";
+  };
+
+  const getSlides = () => {
+    const contents = getCurrentSectionData(params.section);
+
+    return contents.map((content) => {
+      return (
+        <div class="flex flex-col text-center justify-center items-center w-full mb-2">
+          <A
+            href={`/play/${content.url}` ?? "#"}
+            onClick={() => handleSetExample(content.slug) && handleShowDrawer()}
+            replace={content.url ? true : false}
+            class="text-md font-semibold text-white hover:text-blue-500 transition"
+          >
+            {content.slideName}
+          </A>
+          <hr class="w-full border-1 border-gray-600 my-2" />
+        </div>
+      );
+    });
+  };
 
   const handleShowDrawer = () => {
     setShowDrawer(!showDrawer());
@@ -34,7 +70,7 @@ const Contents = () => {
       >
         <h5
           id="drawer-right-label"
-          class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"
+          class="inline-flex items-center mb-4 text-lg bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-pink-400 to-purple-400"
         >
           Table of contents
         </h5>
@@ -59,10 +95,7 @@ const Contents = () => {
             />
           </svg>
         </button>
-        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-          necessitatibus incidunt ut officiis explicabo inventore.
-        </p>
+        {getSlides()}
       </div>
     </>
   );

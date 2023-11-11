@@ -5,6 +5,7 @@ import {
   dataStructures,
   builtInFunc,
   advanced,
+  dataTypes,
 } from "../docs/examples";
 
 export const getCurrentSectionData = (section: string) => {
@@ -21,6 +22,8 @@ export const getCurrentSectionData = (section: string) => {
       return builtInFunc;
     case "advanced":
       return advanced;
+    case "dataTypes":
+      return dataTypes;
     default:
       return welcome;
   }

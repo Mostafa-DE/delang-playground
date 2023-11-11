@@ -78,7 +78,7 @@ const Playground: Component = () => {
           handleClick={handleRun}
           style={{ padding: "0.3rem 2.5rem", margin: "0 0 0.5rem 0" }}
         />
-        <TableOfContent />
+        <TableOfContent setExample={setExample} />
       </div>
       <div class="hidden lg:flex md:h-full">
         <Docs exampleData={example} setExample={setExample} setCode={setCode} />

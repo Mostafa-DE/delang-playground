@@ -27,6 +27,12 @@ const TourGuide: Component = () => {
         </A>
         <A
           class="text-white mt-4 text-xl border-b-2"
+          href="/play/dataTypes/welcome"
+        >
+          Data Types
+        </A>
+        <A
+          class="text-white mt-4 text-xl border-b-2"
           href="/play/basics/welcome"
         >
           Basics
