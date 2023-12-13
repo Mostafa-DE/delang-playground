@@ -9,6 +9,7 @@ import { Route, Router, Routes } from "@solidjs/router";
 import About from "./components/about/about";
 import PdfDoc from "./components/pdfDoc/pdfDoc";
 import "@pdfslick/solid/dist/pdf_viewer.css";
+import DEDownload from "./components/DEUbuntuDownload";
 
 const App: Component = () => {
   return (
@@ -20,6 +21,7 @@ const App: Component = () => {
           <Route path="/play/:section/:example" component={Playground} />
           <Route path="/about" component={About} />
           <Route path="/de-doc" component={PdfDoc} />
+          <Route path="/DE/ubuntu/download" component={DEDownload} />
           <Route path="/*" component={NotFoundPage} />
         </Routes>
       </Router>
