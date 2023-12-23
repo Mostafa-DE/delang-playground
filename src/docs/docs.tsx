@@ -1,5 +1,5 @@
 import type { Component } from "solid-js";
-import { createSignal } from "solid-js";
+import { createSignal, onMount } from "solid-js";
 import {
   RiArrowsArrowRightDoubleFill,
   RiArrowsArrowLeftDoubleFill,
@@ -66,7 +66,7 @@ const Docs: Component<Props> = ({ exampleData, setExample, setCode }) => {
     handleGetExample(sectionData[id - 1].slug);
   };
 
-  effect(async () => {
+  onMount(async () => {
     await handleGetExample(params.example);
   });
 
