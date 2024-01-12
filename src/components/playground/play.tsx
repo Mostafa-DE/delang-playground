@@ -28,15 +28,18 @@ const Playground: Component = () => {
   const [logs, setLogs] = createSignal<null | string>(null);
   const [timeout, setTimeout] = createSignal<string>("false");
   const [error, setError] = createSignal<null | string>(null);
+  const [runError, setRunError] = createSignal<null | string>(null);
   const [loading, setLoading] = createSignal(false);
+  const [runLoading, setRunLoading] = createSignal(false);
   const [example, setExample] = createSignal<{
     id: number;
     slug: string;
   }>(getExampleDataFromParams(params));
+  const [html, setHtml] = createSignal<null | string>(null);
 
   const handleRun = async () => {
     try {
-      setLoading(true);
+      setRunLoading(true);
       const url = import.meta.env.VITE_API_URL;
       const res = await fetch(`${url}/api/exec`, {
         method: "POST",
@@ -50,12 +53,34 @@ const Playground: Component = () => {
 
       setReturnData(data);
       setLogs(logs);
-      setError(error);
+      setRunError(error);
       setTimeout(timeout);
 
-      setLoading(false);
+      setRunLoading(false);
     } catch (error) {
       console.log(error);
+      setRunLoading(false);
+    }
+  };
+
+  const handleGetExample = async (slug: string | null) => {
+    if (!slug) {
+      slug = params.example;
+    }
+
+    try {
+      setLoading(true);
+      const url = import.meta.env.VITE_API_URL;
+      const res = await fetch(`${url}/api/examples/${params.section}/${slug}`);
+
+      const { html, error } = await res.json();
+
+      setHtml(html);
+      setError(error);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setError("Something went wrong while fetching the example.");
       setLoading(false);
     }
   };
@@ -72,16 +97,24 @@ const Playground: Component = () => {
           </span>
         </A>
         <Button
-          loading={loading}
+          loading={runLoading}
           text="Run"
           icon={<VsRunAll size={17} />}
           handleClick={handleRun}
           style={{ padding: "0.3rem 2.5rem", margin: "0 0 0.5rem 0" }}
         />
-        <TableOfContent setExample={setExample} />
+        <TableOfContent setExample={setExample} getExample={handleGetExample} />
       </div>
       <div class="hidden lg:flex md:h-full">
-        <Docs exampleData={example} setExample={setExample} setCode={setCode} />
+        <Docs
+          exampleData={example}
+          setExample={setExample}
+          setCode={setCode}
+          getExample={handleGetExample}
+          html={html}
+          loading={loading}
+          error={error}
+        />
         <Editor
           handleRun={handleRun}
           code={code}
@@ -89,7 +122,7 @@ const Playground: Component = () => {
           timeout={timeout}
           returnData={returnData}
           setCode={setCode}
-          error={error}
+          error={runError}
           exampleData={example}
         />
       </div>

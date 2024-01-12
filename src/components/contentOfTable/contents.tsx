@@ -4,9 +4,10 @@ import { getCurrentSectionData } from "../../docs/utils";
 
 type Props = {
   setExample: (example: { id: number; slug: string }) => void;
+  getExample: (slug: string) => void;
 };
 
-const Contents: Component<Props> = ({ setExample }) => {
+const Contents: Component<Props> = ({ setExample, getExample }) => {
   const [showDrawer, setShowDrawer] = createSignal(false);
   const params = useParams();
 
@@ -15,6 +16,7 @@ const Contents: Component<Props> = ({ setExample }) => {
     const id = sectionData.findIndex((ex) => ex.slug === slug);
 
     setExample({ id, slug });
+    getExample(slug);
 
     return `/play/${params.section}/${slug}` ?? "#";
   };
