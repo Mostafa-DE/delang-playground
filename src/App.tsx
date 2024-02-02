@@ -20,8 +20,8 @@ const App: Component = () => {
           <Route path="/play" component={TourGuide} />
           <Route path="/play/:section/:example" component={Playground} />
           <Route path="/about" component={About} />
-          <Route path="/de-doc" component={PdfDoc} />
-          <Route path="/DE/ubuntu/download" component={DEDownload} />
+          <Route path="/doc" component={PdfDoc} />
+          <Route path="/download/ubuntu" component={DEDownload} />
           <Route path="/*" component={NotFoundPage} />
         </Routes>
       </Router>

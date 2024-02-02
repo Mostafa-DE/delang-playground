@@ -30,7 +30,7 @@ const About: Component = () => {
               developed
             </p>
             <div class="flex justify-center mt-2">
-              <Button text="Read Delang Doc 📄" link={"/de-doc"} />
+              <Button text="Read Delang Doc 📄" link={"/doc"} />
             </div>
             <p class="text-sky-200 mt-8 text-center md:w-1/2 sm:w-full text-lg">
               Or you may want to try Delang

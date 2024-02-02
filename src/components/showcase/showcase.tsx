@@ -1,6 +1,6 @@
 import { VsRunAll } from "solid-icons/vs";
 
-import macbook from "../../assets/terminal.gif";
+import terminal from "../../assets/terminal.gif";
 import Button from "../ui/button";
 
 const Showcase = () => {
@@ -15,7 +15,7 @@ const Showcase = () => {
           🚀
         </h1>
         <p class="leading-normal text-sky-300 text- md:text-2xl mb-8 text-center md:text-left">
-          An interpreted, functional, high-level programming language.
+          An interpreted, dynamic, high-level programming language.
         </p>
         <div class="flex justify-center">
           <Button
@@ -32,7 +32,7 @@ const Showcase = () => {
       <div class="w-full xl:w-3/5 md:flex md:justify-center p-12 overflow-hidden">
         <img
           class="w-full xl:w-4/5 lg:2-3/5 md:w-2/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6"
-          src={macbook}
+          src={terminal}
         />
       </div>
     </div>
