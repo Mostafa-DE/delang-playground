@@ -15,7 +15,7 @@ const About: Component = () => {
           </h1>
           <div class="flex flex-col justify-center items-center">
             <p class="text-sky-200 mt-8 text-center md:w-1/2 sm:w-full text-lg">
-              DE is an interpreted, functional, dynamic, high-level programming
+              DE is an interpreted, dynamic, high-level programming
               language. It is Javascript-Python-like, combining the two language
               syntaxes to create a straightforward, easy-to-understand language.
             </p>
