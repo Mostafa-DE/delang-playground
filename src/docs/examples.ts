@@ -86,14 +86,14 @@ logs(a); // 1.9223372036854756
     slideName: "What is float type?",
     url: "dataTypes/float",
   },
-  {
-    slug: "floatIssue",
-    code: `const x = 1.2 - 1;
-logs(x); // 0.19999999999999996
-`,
-    slideName: "Floating Point: Issues and Limitations",
-    url: "dataTypes/floatIssue",
-  },
+  //   {
+  //     slug: "floatIssue",
+  //     code: `const x = 1.2 - 1;
+  // logs(x); // 0.19999999999999996
+  // `,
+  //     slideName: "Floating Point: Issues and Limitations",
+  //     url: "dataTypes/floatIssue",
+  //   },
   {
     slug: "decimal1",
     code: `const x = decimal(1.2) - decimal(1);
@@ -1001,5 +1001,46 @@ fun() {
     code: `logs("Congratulations! You have completed the advanced section! 😊");`,
     slideName: "Congratulations!",
     url: "advanced/congrats",
+  },
+];
+
+export const exercises: Example[] = [
+  {
+    slug: "welcome",
+    code: `const Lang = "DE";
+logs("Welcome to " + Lang + " exercises! 😊");
+`,
+    slideName: "Welcome to Exercises Section!",
+    url: "exercises/welcome",
+  },
+  {
+    slug: "bubbleSort",
+    code: `// Bubble Sort
+const bubbleSort = fun(arr) {
+  let i = 0;
+  let j = 0;
+  let arrSize = len(arr);
+
+  if arrSize <= 1: {
+    return arr;
+  }
+
+  for i in range(arrSize - 2): {
+    for j in range(0, arrSize - i - 2): {
+      if arr[j] > arr[j + 1]: {
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+
+  return arr;
+}
+
+logs(bubbleSort([2,99,32,0,10,55,100]));
+`,
+    slideName: "Bubble Sort",
+    url: "exercises/bubbleSort",
   },
 ];

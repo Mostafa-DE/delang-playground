@@ -6,6 +6,7 @@ import {
   builtInFunc,
   advanced,
   dataTypes,
+  exercises,
 } from "../docs/examples";
 
 export const getCurrentSectionData = (section: string) => {
@@ -24,6 +25,8 @@ export const getCurrentSectionData = (section: string) => {
       return advanced;
     case "dataTypes":
       return dataTypes;
+    case "exercises":
+      return exercises;
     default:
       return welcome;
   }
