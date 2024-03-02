@@ -103,7 +103,7 @@ const Editor: Component<Props> = ({
   }, [params.example]);
 
   return (
-    <div class="w-3/4 flex flex-col">
+    <div class="lg:w-3/4 flex flex-col">
       <div class="bg-gray-700 p-6 ">
         <pre class="text-md mb-4 text-white">
           <code class=" bg-slate-600 rounded p-1 ">{`${params.example}.de`}</code>
@@ -120,7 +120,7 @@ const Editor: Component<Props> = ({
       </div>
       <div class="h-1/2 bg-gray-700 p-6 overflow-y-auto">
         <h2 class="text-xl font-semibold mb-4 text-white">Logs</h2>
-        <pre class="text-white">
+        <pre class="text-white whitespace-pre-wrap">
           {handleLogsValues()}
           <h2 class="text-xl font-semibold mb-4 text-white">Return Data</h2>
           {handleReturnData()}

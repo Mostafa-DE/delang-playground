@@ -87,10 +87,10 @@ const Playground: Component = () => {
 
   return (
     <>
-      <div class="hidden lg:flex justify-between items-center">
+      <div class="flex justify-between items-center">
         <A
           href="/play"
-          class="relative inline-flex items-center justify-center px-2 py-1 overflow-hidden font-medium bg-sky-500 rounded-lg shadow-2xl group"
+          class="relative hidden md:inline-flex items-center justify-center px-2 py-1 overflow-hidden font-medium bg-sky-500 rounded-lg shadow-2xl group"
         >
           <span class="relative text-white flex items-center justify-center">
             <VsArrowLeft />
@@ -105,7 +105,7 @@ const Playground: Component = () => {
         />
         <TableOfContent setExample={setExample} getExample={handleGetExample} />
       </div>
-      <div class="hidden lg:flex md:h-full">
+      <div class="flex flex-col-reverse lg:flex-row lg:h-full">
         <Docs
           exampleData={example}
           setExample={setExample}
@@ -127,7 +127,7 @@ const Playground: Component = () => {
         />
       </div>
 
-      <div class="lg:hidden flex flex-col justify-between items-center text-center">
+      <div class="hidden flex-col justify-between items-center text-center">
         <h1 class="text-7xl mt-10 pb-1 bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-pink-400 to-purple-400">
           Sorry!
         </h1>

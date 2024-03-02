@@ -58,7 +58,7 @@ const Docs: Component<Props> = ({
   onMount(() => getExample(params.example));
 
   return (
-    <div class="w-6/12 flex flex-col justify-between h-full bg-gray-800 p-6 text-white">
+    <div class="lg:w-6/12 flex flex-col justify-between h-full bg-gray-800 p-6 text-white">
       <div class="overflow-y-auto">
         <div class="text-white max-w-lg">
           {loading() ? (
